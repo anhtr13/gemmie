@@ -70,6 +70,7 @@ Example:
 				user_opts.MaxOutputToken,
 				user_opts.TopP,
 				user_opts.TopK,
+				user_opts.ChatMode,
 				user_opts.StreamMode,
 			)
 
@@ -84,6 +85,8 @@ Example:
 	root_cmd.AddCommand(set_options())
 	root_cmd.AddCommand(list_models())
 	root_cmd.AddCommand(list_options())
+	root_cmd.AddCommand(clear_chat())
+	root_cmd.AddCommand(chat_history())
 	root_cmd.AddCommand(reset())
 
 	root_cmd.PersistentFlags().StringVarP(&prompt, "prompt", "p", "", "Your prompt")
@@ -100,7 +103,9 @@ Example:
 	root_cmd.PersistentFlags().
 		Int32Var(&user_opts.MaxOutputToken, "limit", saved_opts.MaxOutputToken, "Sets the maximum number of tokens to include in a candidate.")
 	root_cmd.PersistentFlags().
-		BoolVar(&user_opts.StreamMode, "stream", saved_opts.StreamMode, "Enable text stream effect (like Gemini, chatGPT, etc) but can not render markdown")
+		BoolVar(&user_opts.ChatMode, "chat", saved_opts.ChatMode, "Enable multi-turn conversations, chat will be saved to history,")
+	root_cmd.PersistentFlags().
+		BoolVar(&user_opts.StreamMode, "stream", saved_opts.StreamMode, "Enable text stream effect (like Gemini, chatGPT, etc) but can not render markdown.")
 }
 
 func Execute() {

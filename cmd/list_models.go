@@ -14,11 +14,11 @@ import (
 
 func list_models() *cobra.Command {
 	return &cobra.Command{
-		Use:   "list-models",
+		Use:   "list_models",
 		Short: "List all available models",
 		Long: `List all available models
 Example: 
-	gemmie list-models
+	gemmie list_models
 `,
 		Run: func(cmd *cobra.Command, args []string) {
 			if client == nil {

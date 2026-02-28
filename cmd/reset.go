@@ -11,11 +11,11 @@ import (
 
 func reset() *cobra.Command {
 	return &cobra.Command{
-		Use:   "reset",
-		Short: "Reset default options",
-		Long: `Reset default options
+		Use:   "reset_opts",
+		Short: "Reset to default options",
+		Long: `Reset to default options
 Example: 
-	gemmie reset
+	gemmie reset_opts
 `,
 		Run: func(cmd *cobra.Command, args []string) {
 			default_opts := model.BaseOptions()

@@ -11,7 +11,7 @@ func set_options() *cobra.Command {
 	return &cobra.Command{
 		Use:   "config",
 		Short: "Set you default app options",
-		Long: `Set you default app options
+		Long: `Set your default app options
 Example: 
 	gemmie config --lang=Vietnamese
 `,
@@ -39,6 +39,10 @@ Example:
 			}
 			if saved_opts.TopK != user_opts.TopK {
 				saved_opts.TopK = user_opts.TopK
+				changed = true
+			}
+			if saved_opts.ChatMode != user_opts.ChatMode {
+				saved_opts.ChatMode = user_opts.ChatMode
 				changed = true
 			}
 			if saved_opts.StreamMode != user_opts.StreamMode {

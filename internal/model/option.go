@@ -6,21 +6,24 @@ import (
 	"os"
 )
 
+const CONFIG_FILE = "options.json"
+
 func GetConfigPath() (string, error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return "", err
 	}
-	app_dir := fmt.Sprintf("%s/%s", home, ".gemmie")
+	app_dir := fmt.Sprintf("%s/%s", home, APP_DIR)
 	err = os.MkdirAll(app_dir, os.ModePerm)
 	if err != nil {
 		return "", err
 	}
-	file_path := fmt.Sprintf("%s/%s", app_dir, "options.json")
+	file_path := fmt.Sprintf("%s/%s", app_dir, CONFIG_FILE)
 	return file_path, nil
 }
 
 type ModelOptions struct {
+	ChatMode       bool    `json:"chat_mode"`
 	StreamMode     bool    `json:"stream_mode"`
 	MaxOutputToken int32   `json:"max_output_token"`
 	Temperature    float32 `json:"temperature"`
